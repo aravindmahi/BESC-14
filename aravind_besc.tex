@@ -1,0 +1,128 @@
+\documentclass[conference]{IEEEtran}
+%-----IEEE recommended packages-------------------
+\usepackage{cite}
+%\usepackage{array}
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+%\usepackage{eqparbox}
+%\usepackage[tight,footnotesize]{subfigure}
+%\usepackage[caption=false]{caption}
+\usepackage[font=footnotesize]{subfig}
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%\usepackage{fixltx2e}
+%\usepackage{stfloats}
+\usepackage{url}
+%--------packages I used----------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{latexsym}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+%---------------------------------------------------------------
+\newcommand{\aravind}[1]{[{\color{blue}\textit{Aravind}\textit{: #1}}]}
+\newcommand{\naren}[1]{[{\color{red}\textit{Naren}\textit{: #1}}]}
+\newcommand{\wei}[1]{[{\color{green}\textit{Wei}\textit{: #1}}]}
+\newcommand{\TODO}[2]{{\color{magenta}[\textbf{TODO:} #2 \textbf{Assignee:} #1]}}
+
+% symbols and stuff from Bert's paper
+\newcommand{\then}{\Rightarrow}
+\newcommand{\softor}{\operatornamewithlimits{\tilde{\vee}}}
+\newcommand{\softand}{\operatornamewithlimits{\tilde{\wedge}}}
+\newcommand{\softthen}{\operatornamewithlimits{\tilde{\then}}}
+\newcommand{\softneg}{\operatornamewithlimits{\tilde{\neg}}}
+%-----------------------------------------------------------------
+\pdfinfo{
+	/Title (Discovering Evolving Political Vocabulary in Social Media)
+	/Author (Aravindan Mahendiran, Wei Wang, Naren Ramakrishnan, Bert Huang, Lise Getoor)
+}
+%------------------------------------------------------------------
+\begin{document}
+\title{Discovering Evolving Political Vocabulary in Social Media}
+\author{
+	\IEEEauthorblockN{
+		Aravindan Mahendiran\IEEEauthorrefmark{1},
+		Bert Huang\IEEEauthorrefmark{2},
+		Wei Wang\IEEEauthorrefmark{1},\\ 
+		Jaime Arredondo Sanchez Lira\IEEEauthorrefmark{3},
+		Lise Getoor\IEEEauthorrefmark{2},
+		David Mares\IEEEauthorrefmark{3} and
+		Naren Ramakrishnan\IEEEauthorrefmark{1}
+	}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{1}Virginia Tech.,
+	}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{2}University of Maryland
+	}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{3}University of California, San Diego
+	}
+}
+\maketitle
+\input{tex_files/Abstract}
+\input{tex_files/Introduction.tex}
+\input{tex_files/PSL.tex}
+
+\begin{table*}
+        \centering
+        \begin{tabular}{|l|r|}
+        \hline
+        Feature & Coefficient Value\\
+        \hline
+        \textrm{SoPU} & 0.4622\\
+        \textrm{SoNU} & -0.443\\
+        \textrm{SoPM} &  0.1158\\
+        \textrm{SoNM} &  -0.065\\
+        \textrm{SoS} & 0.156\\
+        \textrm{Incumbency} & 0.0\\
+        \hline
+        \end{tabular}
+        \caption{Regression coefficients learned for features; \textrm{SoPU}:Share of positive users;\textrm{SoNU}:Share of negative users;\textrm{SoPM}:Share of positive mentions;\textrm{SoNM}:Share of negative mentions;\textrm{Sos}:Share of sentiment;\textrm{Incumbency}:Binary variable for incumbency}
+        \label{table:coeff}
+\end{table*}
+
+\input{tex_files/Prediction_Models.tex}
+\input{tex_files/Results.tex}
+\input{tex_files/Conclusions_FutureWork.tex}
+
+\begin{comment}
+\textbf{Acknowledgments}
+This work is supported in part by the National Science Foundation under Grant No. 0937094 and the Intelligence Advanced Research Projects Activity (IARPA) via Department of Interior National Business Center (DoI/NBC) contract number D12PC00337. The U.S. Government is authorized to reproduce and distribute reprints for Governmental purposes notwithstanding any copyright annotation thereon. Disclaimer: The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies or endorsements, either expressed or implied, of IARPA, DOI/NBA, or the U.S. Government.
+\end{comment}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\begin{comment}
+\begin{figure*}
+	\centering
+	\includegraphics[height=0.3\textheight, width=0.80\textwidth]{support_files/WordGrowth.png}
+	%\includegraphics[scale=0.30]{support_files/WordGrowth.png}
+	\caption{Vocabulary growth with each iteration.}
+	\label{fig:wordgrowth}
+\end{figure*}
+\end{comment}
+
+\begin{comment}
+\begin{table*}
+        \centering
+        \begin{tabular}{| l | r | r | r |}
+        \hline
+        Election Type & Number of Elections & Number of Correct Predictions & Accuracy\\
+        \hline
+        President/Prime Minister & 8 & 8 & 100\%\\
+        Governor & 4 & 3 & 75\%\\
+        Mayor & 24 & 12 & 50\%\\
+        Overall & 36 & 23 & 63.88\%\\
+        \hline
+        \end{tabular}
+        \caption{Track Record of Prediction Algorithms}
+        \label{table:trackRecord}
+\end{table*}
+\end{comment}
+
+\end{document}
+
+

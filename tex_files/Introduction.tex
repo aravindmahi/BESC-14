@@ -1,0 +1,129 @@
+\section{Introduction}
+It is now established that social media such as Twitter serves as a weak
+predictor or as a correlative surrogate for many real-world trends such
+as %book sales~\cite{gruhl2005predictive}, 
+box office earnings~\cite{asur2010predicting}, flu case counts~\cite{culotta2010towards}, and even stock 
+prices~\cite{bollen2011twitter}. A topic of current interest is to study how
+online chatter can be used to model
+the social, economic or political landscape of a country.
+
+Most approaches to tracking real-world phenomena over Twitter rely on first defining a vocabulary
+of keywords (or hashtags) to track over the social media. This is typically sufficient for
+phenomena about which we have a fairly stable understanding but not for rapidly evolving phenomena,
+e.g., an election season where new developments can upset or raise the success rates of competing candidates
+among key groups or populations.
+In such cases, rather than %use 
+a static vocabulary to {\it a priori} define social groups
+of interest (e.g., Twitter users who are favorably or not favorably disposed
+toward specific candidates), it is preferable to grow dynamic vocabularies by modeling the temporal progression of
+events. In addition to better defining social group memberships, such modeling can provide
+higher-quality data for downstream applications such as forecasting.
+
+We propose a dynamic query expansion strategy that aids in modeling social groups of interest over time, and
+use the domain of elections to demonstrate the effectiveness of our approach. Modeling elections provides both
+qualitative and quantitative insight into the utility of our approach.
+Our key contributions are:
+\begin{enumerate}
+\item We demonstrate
+a novel unsupervised learning algorithm that builds dynamic vocabularies using Probabilistic Soft Logic (PSL) ~\cite{kimmig2012short}, a framework for probabilistic reasoning over relational domains.
+Beginning with a small seed set of keywords/hashtags, we demonstrate how our PSL program helps
+grow the seed set into 
+vocabularies involving hundreds of relevant terms. This aids in significantly improving the retrieval of tweets
+corresponding to relevant
+social groups of interest.
+\item Using eight presidential elections from six countries of Latin America (Mexico, Venezuela, Ecuador, Paraguay, Chile, and Honduras), we show how our query expansion methodology helps capture dynamic trends and
+better ascertain group memberships of users. Our %experimentation 
+experiments over the Latin American region (where tweets
+arise from a multilingual set, including English, Spanish, Portugese, and French) demonstrates the practical utility
+of our approach.
+\item In addition to qualitative understanding of social groups, we demonstrate how our approach yields
+appreciable improvements to the forecasting of election outcomes. By regressing against opinion polls in each region,
+we illustrate how better social group modeling reveals popularities of candidates and their policies.
+\end{enumerate}
+
+\section{Related Work}
+Related work can be organized into key categories: query expansion, forecasting elections using social media,
+and probabilistic reasoning with PSL.
+
+\subsection{Query Expansion}
+Query expansion is a classical technique in information retrieval (IR) ~\cite{manning2008introduction} intended to improve
+retrieval performance by overcoming problems such as {\it synonymy}. Query expansion algorithms
+are typically iterative in nature wherein a seed set of query terms help identify an initial set
+of documents matching the query, and the highly-ranked retrieved documents (either judged by a human
+or by `pseudo-relevance' techniques) are used to automatically grow the vocabulary. Modern
+query expansion algorithms use sophisticated concept modeling approaches ~\cite{metzler2007latent}
+to grow the given seed set. In contrast to such classical approaches,
+our proposed approach is based on a dynamic query expansion strategy  intended to track a vocabulary
+over time. Furthermore, unlike most approaches to query expansion, our PSL approach uses a probabilistic formalism
+to grow the vocabulary. Finally, PSL provides a rich programmatic environment to incorporate 
+multiple indicators (social network, demographics, time) to grow the vocabulary rather than pre-committing to a 
+specific strategy.
+
+\subsection{Forecasting Elections using Social Media}
+Traditional approaches to forecasting elections use `volume-based' ideas
+%~\cite{tumasjan2010predicting,o2010tweets,saez2011total,bermingham2011using,demartini2011analyzing},
+~\cite{tumasjan2010predicting,o2010tweets,saez2011total,bermingham2011using}, 
+i.e., forecasting election results by assessing the popularities of candidates and their policies.
+In particular, both ~\cite{o2010tweets,bermingham2011using} fit a regression model to opinion 
+polls with volume of mentions and sentiment as independent variables and the opinion 
+polls as the dependent variable. 
+More sophisticated approaches, as presented in~\cite{livne2011party,conover2011predicting,diaz2012taking},
+either model the candidates or the voters in the elections rather than compute the aggregated sentiment of the mass.  
+In~\cite{conover2011predicting} the authors build a support vector machine (SVM)
+classifier trained on manually labeled tweets and classify users into `left' and `right' aligned.
+Using this information and how political information diffuses in a network, they demonstrate an accuracy of 95\%  in 
+predicting the political alignment of Twitter users.
+Livne et al. in ~\cite{livne2011party} analyze the Twitter profiles of candidates who contested 
+the 2010 mid-term elections in the U.S. 
+They identify topics specific to groups of candidates, split according to their known political orientations and use 
+these features obtained as inputs to a regression model to forecast the elections. 
+In a similar technique Diaz-Aviles in~\cite{diaz2012taking} model the candidates by building an emotional vector 
+for each candidate using the mentions of that candidate and sentiments associated with each mention learned using 
+the NRC Emotion Lexicon (EmoLex). 
+They then use %such profiles learned 
+these profiles to predict the rise and fall of a candidate's popularity.
+In another thread of research, Mustafaraj et al. ~\cite{mustafaraj2011vocal} model the distribution of political content 
+among Twitter users. 
+They divide the users into two groups, the ``vocal minority" and the ``silent majority" and
+observe that these two groups engage in different ways over social media.
+The vocal minority aims to broaden the impact of tweets by re-tweeting and linking to other web content, whereas 
+the silent majority who tweet significantly less are more inclined to share their personal view points.
+
+\subsection{Flawed Studies?}
+Recent coverage of election forecasting using Twitter has been critical, e.g.,
+%see~\cite{metaxas2011not,gayo2012wanted,gayo2011don,gayo2011limits}.
+see~\cite{metaxas2011not,gayo2012wanted}
+These publications not only list pertinent problems
+in using Twitter to forecast elections but also detail recommendations on how to make such methodologies better.
+Gayo-Avello surveys %almost all 
+the state-of-the-art approaches in predicting elections, 
+%in his paper~\cite{gayo2012wanted}, 
+most of which have been detailed above.
+Gayo-Avello argues that post-hoc analysis of elections in retrospect must not count as valid predictions and that researchers 
+must be wary of the \emph{file drawer} effect, i.e., the act of filing away negative results and publishing 
+only the positive results. His major points of contention against such models are:
+lack of explainability, no direct way to model a `vote' in social media, self-selection bias,
+unrepresentativeness of Twitter demographics, lack of sophisticated sentiment modeling strategies
+(e.g., to detect humor and sarcasm that abound in political conversations), and inability to capture
+indifferences among the voting public (i.e., 
+abstaining from tweeting about politics can carry as much signal as explicit mentions
+of candidates). Finally, it has been shown that many of these models %sometimes 
+do not outperform a simple
+base model that forecasts success for the incumbent.
+Our approach here is to aid in better modeling of social groups and improve such predictions.
+%and regress toward opinion polls using this information.
+A truly comprehensive system will utilize social media as just one of its strategies in forecasting and
+we do not make any claims of developing a universal forecasting system for elections.
+
+\subsection{Social Group Modeling}
+Twitter is a natural venue to study social group modeling and there have been many studies that aim to
+study social groups in the context of election seasons.
+~\cite{huang2012social}, for instance,
+models user affiliations within groups by capturing social networks comprising users, their posts,
+messages to other users and the various groups they intend to model.
+Dynamics of group affiliations are captured through various interactions between these entities in the underlying
+network. The authors discover hashtag usage specific to political seasons.
+Our work here differs in that we model the dynamic growth of vocabularies and, more importantly,
+use the resulting vocabularies for improving forecasting performance.
+
+
