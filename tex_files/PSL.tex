@@ -1,10 +1,10 @@
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[scale=0.25]{support_files/flowChart.png}
 	%\includegraphics[height=0.25\textheight, width=0.80\textwidth]{support_files/flowChart.png}
 	\caption{Design of the query expansion pipeline.}
 	\label{fig:flowchart}
-\end{figure*}
+\end{figure}
 \section{Probabilistic Soft Logic}
 \emph{Probabilistic soft logic} ~\cite{kimmig2012short,broecheler2010probabilistic} is a framework for collective probabilistic reasoning in relational domains.
 PSL models have been developed for various problem areas, including opinion diffusion ~\cite{bach2012scaling}, ontology alignment ~\cite{broecheler2010probabilistic}, trust in social networks ~\cite{huang2013flexible}, and knowledge graph identification ~\cite{pujara2013knowledge}.
@@ -258,13 +258,13 @@ After a few iterations Figure~\ref{fig:wordCloud2} shows how the vocabulary has 
 However, not all the words identified until now remain in the final vocabulary as the system drops certain words in successive iterations.
 At the same time it is also noticed that hashtags like ``capriles" and ``hayuncamino" which are very strongly associated with Capriles consistently remain as the top ranked hashtags even after ten iterations (Figure~\ref{fig:wordCloud4}). 
 It is also interesting to note that the algorithm identified hashtags like ``nochavez" (Figure\ref{fig:wordCloud3}) and attributed it rightly to Hugo Ch\'{a}vez's primary contender, i.e., Capriles. 
-\begin{figure*}[Ht]
+\begin{figure}[Ht]
 	\centering
 	%\includegraphics[scale=0.40]{support_files/hashTagTimeSeries.png}\\
-	\includegraphics[height=0.25\textheight, width=0.80\textwidth]{support_files/hashTagTimeSeries.png}
+	\includegraphics[height=0.2\textheight, width=0.45\textwidth]{support_files/hashTagTimeSeries.png}
 	\caption{Time series comparison for different hashtags identified for Hugo Ch\'{a}vez.}
 	\label{fig:timeSeries}
-\end{figure*}
+\end{figure}
 In Figure~\ref{fig:timeSeries}, the first plot elucidates how hashtags like \emph{``elmnduconchavez"} and 
 \emph{``univistaconchavez"} remain highly associated with Hugo Ch\'{a}vez for the October 7th Presidential election. 
 These hashtags remain indicative of a user's affiliation throughout the month leading up to the election.
@@ -311,48 +311,22 @@ Ecuador had a first round for the presidential election on February 17th, 2013 w
 From the tags(Figure~\ref{fig:ecuadorwordCloud}) we can read support in phrases such as “yatenemospresidente” (we have elected president) or “tenemosarafael” (we have Rafael). 
 There are some references to other candidates such as “lassopresidente” (candidate Lasso president).
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\subfloat[Nov 24]
 	{
-		\includegraphics[width=0.5\textwidth, height=0.3\textheight]{support_files/bacheletWordCloud1.png}
+		\includegraphics[width=0.22\textwidth, height=0.15\textheight]{support_files/bacheletWordCloud1.png}
 		\label{fig:bacheletwordCloud1}
 	} 
 	\subfloat[Dec 15]
 	{
-		\includegraphics[width=0.5\textwidth, height=0.3\textheight]{support_files/bacheletWordCloud2.png}
+		\includegraphics[width=0.22\textwidth, height=0.15\textheight]{support_files/bacheletWordCloud2.png}
 		\label{fig:bacheletwordCloud2}
 	}
 	\caption{Hashtags identified for Michelle Bachelet} 
 	\label{fig:bacheletwordCloud}
-\end{figure*}
-\begin{figure*}
-	\centering
-	\subfloat[Mexico]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/mexicoWordCloud.png}
-		\label{fig:mexicowordCloud}
-	} 
-	\subfloat[Paraguay]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/paraguayWordCloud.png}
-		\label{fig:paraguaywordCloud}
-	} \\
-	\noindent 
-	\subfloat[Honduras]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/hondurasWordCloud.png}
-		\label{fig:honduraswordCloud}
-	}
-	\subfloat[Ecuador]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/ecuadorWordCloud.png}
-		\label{fig:ecuadorwordCloud}
-	}
-	\caption{Vocabulary of hashtags identified for different elections} 
-	\label{fig:countrywordCloud}
-\end{figure*}
-\noindent
+\end{figure}
+
 {\bf Chile:}
 Figure~\ref{fig:bacheletwordCloud} shows the hashtags identified for Michelle Bachelet who won the Chilean Presidential elections that was decided over two rounds.
 The first round was conducted on the 24th of November, 2013 and the 2nd round was conducted on December 15, 2013. 
@@ -366,6 +340,35 @@ It can be noticed that the vocabulary for the Honduran and Ecuadorean  elections
 This is primarily because Twitter is not as popular in these two countries as in Venezuela or Chile and therefore the number of tweets
 used for the inference was significantly lesser.
 This in turn affects the quality of the PSL inference.
+
+
+\begin{figure}[t]
+	\centering
+	\subfloat[Mexico]
+	{
+		\includegraphics[width=0.22\textwidth, height=0.15\textheight]{support_files/mexicoWordCloud.png}
+		\label{fig:mexicowordCloud}
+	} 
+	\subfloat[Paraguay]
+	{
+		\includegraphics[width=0.22\textwidth, height=0.15\textheight]{support_files/paraguayWordCloud.png}
+		\label{fig:paraguaywordCloud}
+	} \\
+	\noindent 
+	\subfloat[Honduras]
+	{
+		\includegraphics[width=0.22\textwidth, height=0.15\textheight]{support_files/hondurasWordCloud.png}
+		\label{fig:honduraswordCloud}
+	}
+	\subfloat[Ecuador]
+	{
+		\includegraphics[width=0.22\textwidth, height=0.15\textheight]{support_files/ecuadorWordCloud.png}
+		\label{fig:ecuadorwordCloud}
+	}
+	\caption{Vocabulary of hashtags identified for different elections} 
+	\label{fig:countrywordCloud}
+\end{figure}
+\noindent
 
 \TODO{}{Add analysis about latest presidential election in Colombia}
 
