@@ -31,8 +31,7 @@ grow the seed set into
 vocabularies involving hundreds of relevant terms. This aids in significantly improving the retrieval of tweets
 corresponding to relevant
 social groups of interest.
-\item Using eight presidential elections from six countries of Latin America (Mexico, Venezuela, Ecuador, Paraguay, Chile, and Honduras), we show how our query expansion methodology helps capture dynamic trends and
-better ascertain group memberships of users. Our %experimentation 
+\item Using ten presidential elections from eight countries of Latin America (Mexico, Venezuela, Ecuador, Paraguay, Chile, Panama, Colombia and Honduras), we show how our query expansion methodology helps capture dynamic trends and improve the election prediction performance. Our
 experiments over the Latin American region (where tweets
 arise from a multilingual set, including English, Spanish, Portugese, and French) demonstrates the practical utility
 of our approach.
@@ -44,12 +43,14 @@ we illustrate how better social group modeling reveals popularities of candidate
 \end{enumerate}
 
 \section{Related Work}
-Related work can be organized into key categories: query expansion, forecasting elections using social media,
+Related work can be organized into following key categories: query expansion, forecasting elections using social media,
 and probabilistic reasoning with PSL.
+\begin{comment}
 \reviews{refer\\
 Dongsheng Duan, Yuhua Li, Ruixuan Li, Rui Zhang, and Aiming Wen. 2012. RankTopic: Ranking Based Topic Modeling. In Proceedings of the 2012 IEEE 12th International Conference on Data Mining (ICDM 12) [This work also captures relational information] ; Daniel Ramage, Susan T. Dumais, and Daniel J. Liebling. ICWSM, The AAAI Press, (2010); Castella, Quim and Sutton, Charles A Word Storms: Multiples of Word Clouds for Visual Comparison of Documents. CoRR abs/1301.0503 (2013)\\
 Lau, Jey Han, Nigel Collier and Timothy Baldwin (2012) On-line Trend Analysis with Topic Models: hashtag twitter trends detection topic model online, In Proceedings of the 24th International Conference on Computational Linguistics (COLING 2012)
 }
+\end{comment}
 
 \subsection{Query Expansion}
 Query expansion is a classical technique in information retrieval (IR) ~\cite{manning2008introduction} intended to improve
@@ -58,7 +59,8 @@ are typically iterative in nature wherein a seed set of query terms help identif
 of documents matching the query, and the highly-ranked retrieved documents (either judged by a human
 or by `pseudo-relevance' techniques) are used to automatically grow the vocabulary. Modern
 query expansion algorithms use sophisticated concept modeling approaches ~\cite{metzler2007latent}
-to grow the given seed set. In contrast to such classical approaches,
+to grow the given seed set. Kamran ~\cite{massoudi2011incorporating} considers not only the co-occurrence but also the time information to score the related terms to expand the query.  
+In contrast to such classical approaches,
 our proposed approach is based on a dynamic query expansion strategy  intended to track a vocabulary
 over time. Furthermore, unlike most approaches to query expansion, our PSL approach uses a probabilistic formalism
 to grow the vocabulary. Finally, PSL provides a rich programmatic environment to incorporate 
@@ -67,7 +69,6 @@ specific strategy.
 
 \subsection{Forecasting Elections using Social Media}
 Traditional approaches to forecasting elections use `volume-based' ideas
-%~\cite{tumasjan2010predicting,o2010tweets,saez2011total,bermingham2011using,demartini2011analyzing},
 ~\cite{tumasjan2010predicting,o2010tweets,saez2011total,bermingham2011using}, 
 i.e., forecasting election results by assessing the popularities of candidates and their policies.
 In particular, both ~\cite{o2010tweets,bermingham2011using} fit a regression model to opinion 
