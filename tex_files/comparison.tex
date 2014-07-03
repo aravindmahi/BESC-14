@@ -1,27 +1,72 @@
 \subsection{Election Prediction}
+\begin{comment}
+
 \begin{table*}[ht]
 	\centering
 	\begin{tabular}{| l |l| r | r |}
 		\hline
 		Election Type & Winner& Seed Words & PSL Expansion\\
 		\hline
-		2012 Mexico & Enrique Peña Nieto&  &  \\
-		2012 Venezuela & Hugo Ch\'{a}vez& &\\
-		2013 Venezuela & Nicolás Maduro & & \\
-		2013 Chile first round & Michelle Bachelet & True& \\
-		2013 Chile second round & Michelle Bachelet  & True & \\
-		2013 Ecuador & Rafael Correa & True& \\
+		2012 Mexico & Enrique Peña Nieto&  & True \\
+		2012 Venezuela & Hugo Ch\'{a}vez& & True\\
+		2013 Venezuela & Nicolás Maduro & & True\\
+		2013 Chile first round & Michelle Bachelet & True& True\\
+		2013 Chile second round & Michelle Bachelet  & True & True\\
+		2013 Ecuador & Rafael Correa & True& True\\
 		2013 Honduras & Juan Orlando Hernández  & False& \\
-		2013 Paraguay & Horacio Cartes & True& \\
-		2014 Colombia first round & Óscar Iván Zuluaga & False& \\
-		2014 Colombia second round & Juan Manuel Santos & False& \\
-		2014 Panama & Juan Carlos Varela& False& \\\hline
+		2013 Paraguay & Horacio Cartes & True& True\\
+		2014 Colombia first round & Óscar Iván Zuluaga & False& True\\
+		2014 Colombia second round & Juan Manuel Santos & False& False\\
+		2014 Panama & Juan Carlos Varela& False& True\\\hline
 		Average Accuracy &    & \%& \%\\
 		\hline
 	\end{tabular}
 	\caption{Track Record of Prediction Algorithms(Need to complete experiments on the missing countries)}
-	\label{table:trackRecord}
+	\label{table:trackRecord2}
 \end{table*}
+
+\end{comment}
+		
+\begin{table*}[ht]
+		\centering
+		\begin{tabular}{| l | l | r | r | r | r | r | r |}
+		\hline
+		Election & Candidate & Actual Result & Seed Vocab. & Error & PSL Vocab. & Error \\
+		\hline
+		\multirow{2}{*}{Mexico\_Jul01} & Pe\~{n}a Nieto & 38.1 & 46.80 & 8.65 & 39.00 & \textbf{0.85} \\\cline{2-7}
+											   & L\'{o}pez Obrador & 31.64 & 24.67 & 6.97 & 28.64 & \textbf{3.00} \\
+		\hline
+		\multirow{2}{*}{Venezuela\_Oct7} & Hugo Ch\'{a}vez & 55.07 & 49.89 & 5.18 & 55.89 & \textbf{0.82}\\\cline{2-7}
+																& Henrique Capriles & 44.31 & 36.31 & 8.00 & 43.91 & \textbf{0.40} \\
+		\hline
+		\multirow{2}{*}{Ecuador\_Feb17} & Rafael Correa & 57.16 & 53.33 & 3.84 & 54.33 & \textbf{2.84} \\\cline{2-7}
+												 & Guillermo Lasso & 22.68 & 12.27 & 10.41 & 12.75 & \textbf{9.93} \\
+		\hline
+		 \multirow{2}{*}{Venezuela\_Apr15} & Nicol\'{a}s Maduro & 50.61 & 51.45 & 0.84 & 50.58 & \textbf{0.03} \\\cline{2-7}
+																	& Henrique Capriles & 49.12 & 35.96 & 13.16 & 38.11 & \textbf{11.01} \\
+		\hline
+		\multirow{2}{*}{Paraguay\_Apr21} & Horacio Cartes & 48.48 & 35.21 & 13.27 & 40.63 & \textbf{7.85} \\\cline{2-7}
+												   & Efra\'{i}n Alegre & 39.05 & 31.33 & 7.72 & 34.44 & \textbf{4.62} \\
+		\hline
+		\multirow{2}{*}{Chile\_Nov17} & Michelle Bachelet & 46.70 & 38.91 & 7.79 & 41.80 & \textbf{4.91}\\\cline{2-7}
+														  & Evelyn Matthei & 25.03 & 19.20 & 5.83 & 20.98 & \textbf{4.05} \\
+		\hline 
+		\multirow{2}{*}{Honduras\_Nov24} & Orlando Hern\'{a}ndez & 36.80 & 25.16 & 11.64 & 28.30 & \textbf{8.50} \\\cline{2-7}
+												   & Xiomara Castro & 28.70 & 16.53 & 12.17 & 24.90 & \textbf{3.80} \\
+		\hline
+		\multirow{2}{*}{Chile\_Dec15} & Michelle Bachelet & 62.16 & 39.12 & 23.04 & 39.80 & \textbf{22.37}\\\cline{2-7}
+															& Evelyn Matthei & 37.83 & 20.88 & 16.95 & 21.68 & \textbf{16.15} \\
+		\hline
+		\multirow{2}{*}{Panama\_May04} & Juan Carlos Varela & 39.07 &  &  &36.23  & \textbf{2.84}\\\cline{2-7}
+																	& Jose Domingo Arias  & 31.40 &  &  &33.67  & \textbf{2.27} \\
+		\hline 											 
+		\multirow{2}{*}{Colombia\_Jun15} & Juan Manuel Santos & 50.95 &  &  & 45.75 & \textbf{5.2}\\\cline{2-7}
+																	& Oscar Ivan Zuluaga & 45.00 &  &  &46.72  & \textbf{1.72} \\
+		\hline
+		\end{tabular}
+		\caption{Reduction in prediction error for Regression Model. All values shown are percentages.}
+		\label{table:trackRecord}
+	\end{table*}	
 
 We adapt one basic forecasting algorithm from current literature to evaluate the
 performance of our expanded vocabularies. The model uses a regression fit to map from tweet features to opinion polls and thus forecast elections. We dub this model as the \emph{``regression model"} and this approach is adapted from \cite{bermingham2011using} and \cite{o2010tweets}.
