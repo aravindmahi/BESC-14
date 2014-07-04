@@ -57,11 +57,11 @@
 		\multirow{2}{*}{Chile\_Dec15} & Michelle Bachelet & 62.16 & 39.12 & 23.04 & 39.80 & \textbf{22.37}\\\cline{2-7}
 															& Evelyn Matthei & 37.83 & 20.88 & 16.95 & 21.68 & \textbf{16.15} \\
 		\hline
-		\multirow{2}{*}{Panama\_May04} & Juan Carlos Varela & 39.07 &  &  &36.23  & \textbf{2.84}\\\cline{2-7}
-																	& Jose Domingo Arias  & 31.40 &  &  &33.67  & \textbf{2.27} \\
+		\multirow{2}{*}{Panama\_May04} & Juan Carlos Varela & 39.07 &31.28  & 7.79 & 36.23  & \textbf{2.84}\\\cline{2-7}
+																	& Jose Domingo Arias  & 31.40 & 35.02  & 3.62  & 33.67  & \textbf{2.27} \\
 		\hline 											 
-		\multirow{2}{*}{Colombia\_Jun15} & Juan Manuel Santos & 50.95 &  &  & 45.75 & \textbf{5.2}\\\cline{2-7}
-																	& Oscar Ivan Zuluaga & 45.00 &  &  &46.72  & \textbf{1.72} \\
+		\multirow{2}{*}{Colombia\_Jun15} & Juan Manuel Santos & 50.95 &48.85  & \textbf{2.1} & 45.75 & 5.2\\\cline{2-7}
+																	& Oscar Ivan Zuluaga & 45.00 & 43.79 & \textbf{1.21} & 46.72  & 1.72 \\
 		\hline
 		\end{tabular}
 		\caption{Reduction in prediction error for Regression Model. All values shown are percentages.}
@@ -92,5 +92,5 @@ Only tweets from the locations pertaining to elections were used to make the pre
 For example, for the Colombia 2014 presidential elections only tweets from Colombia were used.
 Once the tweets were filtered by location the time series of Klout and sentiment scores were calculated by tracking the tweets for the mentions of candidate.
 
-Table~\ref{table:trackRecord} shows the overall performance of the regression model under two settings. 
-\TODO{Wei}{Write something about the model according to the result}.
+Table~\ref{table:trackRecord} shows the overall performance of the regression model under two settings. For each election, we predict the support rate for each candidate. The error rate is calculated as the difference between actual support rate and our prediction.
+Although both of two settings have the same accuracy 0.9, but the overall error rate has been significantly inproved by applying PSL query expansion. 
