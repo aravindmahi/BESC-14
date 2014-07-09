@@ -64,33 +64,39 @@
 																	& Oscar Ivan Zuluaga & 45.00 & 43.79 & \textbf{1.21} & 46.72  & 1.72 \\
 		\hline
 		\end{tabular}
-		\caption{Reduction in prediction error for Regression Model. All values shown are percentages.}
+		\caption{Reduction in prediction error by regressing Tweet
+features derived from the PSL vocabulary to opinion polls. All values shown are percentages. Observe that in all but the Colombian election, the PSL vocabulary provides
+a better estimate of the vote share of the candidate.}
 		\label{table:trackRecord}
 	\end{table*}	
 
 We adapt one basic forecasting algorithm from current literature to evaluate the
-performance of our expanded vocabularies. The model uses a regression fit to map from tweet features to opinion polls and thus forecast elections. We dub this model as the \emph{``regression model"} and this approach is adapted from \cite{bermingham2011using} and \cite{o2010tweets}.
+performance of our expanded vocabularies. We emphasize that our focus in this paper is
+not on election forecasting per se but an interesting byproduct of our algorithm is that
+it provides useful features for election forecasting.
+To evaluate this aspect, we develop
+a regression approach
+to
+learn a mapping
+from tweet features (more below) to opinion polls, and thus forecast elections. 
+this approach is adapted from \cite{bermingham2011using} and \cite{o2010tweets}.
 
-{\bf Regression Model:}
-In this model, in addition to tweets, we leverage any opinion polls available for the elections 
-to make our predictions.
-Like the earlier model we track the tweets that mention words/phrases
-from the vocabulary defined for each candidate.
-We then conduct a linear regression fit that uses the opinion polls as dependent variable and features generated from 
-these tweets as independent variable.
-We reason that by regressing from the Twitter features to the opinion polls the bias due to Twitter being a non-representative sample
+We reason that by regressing from Twitter-derived features to the opinion polls the bias due to Twitter being a non-representative sample
 can be mitigated.
 We use a total of six features: Klout scores, number of unique users, total number of mentions, sentiment, and incumbency.
 The Klout scores, unique users, and mentions are further categorized into positive and negative mentions.
-We normalize each of these features across all candidates to obtain the relative share of the volume. 
+Using our expanded vocabularies to suitably apportion tweets across the candidates,
+we normalize each of these features to obtain the relative share of the volume. 
 When there is more than one polling house publishing an opinion poll (for the same date) we take the average of the polls. 
 
 \noindent
 {\bf Performance:}
-The Regression Model was tested exhaustively on a total of 11 presidential elections from Latin America during 2012 and 2014. we run the prediction model in two different setting: only using the seeding words and using PSL query expansion.The tweets were purchased from DataSift, an infoveilence service that resells Twitter data. Then these tweets were geo-coded using a geo-location algorithm we developed to obtain tweets from the country of interest.
-Only tweets from the locations pertaining to elections were used to make the predictions.
-For example, for the Colombia 2014 presidential elections only tweets from Colombia were used.
-Once the tweets were filtered by location the time series of Klout and sentiment scores were calculated by tracking the tweets for the mentions of candidate.
-
-Table~\ref{table:trackRecord} shows the overall performance of the regression model under two settings. For each election, we predict the support rate for each candidate. The error rate is calculated as the difference between actual support rate and our prediction.
-Although both of two settings have the same accuracy 0.9, but the overall error rate has been significantly inproved by applying PSL query expansion. 
+The model was tested exhaustively on a total of ten presidential elections from Latin America during 2012 and 2014. We run the prediction model in two different setting: one using the 
+seed words and the other using PSL query expansion.
+As outlined in the methodology earlier, only tweets geocoded to the specific location were
+used to developed predictions for that location.
+Table~\ref{table:trackRecord} shows the overall performance of the regression model under two settings. For each election, we predict the percentage of votes
+gathered by each candidate. The error rate is calculated as the difference between the predicted
+percentage and the actual polled percentage.
+In all cases except the Colombia election, the PSL methodology described here gave a better
+estimate of the vote share, in many cases within a margin of 5\%.

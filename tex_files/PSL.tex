@@ -1,6 +1,6 @@
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.25]{support_files/flowChart.png}
+	\includegraphics[scale=0.35]{support_files/flowChart2.PNG}
 	%\includegraphics[height=0.25\textheight, width=0.80\textwidth]{support_files/flowChart.png}
 	\caption{Design of the query expansion pipeline.}
 	\label{fig:flowchart}
@@ -26,13 +26,13 @@ Given interpretation $\mathit{I}$, these relaxations for the logical conjunction
 \begin{align*}
 \ell_1 \softand \ell_2 &= \max\{0, I(\ell_1) + I(\ell_2) - 1\},\\
 \ell_1 \softor \ell_2 &= \min\{I(\ell_1) + I(\ell_2), 1\},\\
-\softneg l_1 &= 1 - I(\ell_1),
+\softneg \ell_1 &= 1 - I(\ell_1),
 \end{align*}  
 where we use the tilde modifier (\textasciitilde) to indicate the relaxation of the Boolean domain.
 Using the logical algebra and the relaxations above, 
 an implication rule $\mathit{r} \equiv \mathit{r_{body}} \rightarrow \mathit{r_{head}} $ is satisfied if and only if the truth value of its head is at least that of its body. The rule's \emph{distance to satisfaction} measures the degree to which this condition is violated.
 \begin{center} 
- $\mathit{d_r}(\mathit{I}) =$ max\{0,$\mathit{I(r_{body}} - \mathit{I(r_{head})}$\}
+ $\mathit{d_r}(\mathit{I}) =$ max\{0,$\mathit{I(r_{body})} - \mathit{I(r_{head})}$\}
  \end{center}
 PSL induces a probability distribution over possible interpretations $\mathit{I}$ over the given set of ground atoms $\mathit{l} $ in the domain. 
 Let $\mathit{R}$ be the set of all ground rules that are instances of a rule from the PSL program.  
@@ -59,14 +59,13 @@ that we believe are indicative of the affinity of a
 particular user to a candidate contesting in the election (e.g., these terms are names,
 party symbols of the candidate).
 We iteratively use PSL inference over successive time windows such that the inference 
-from window $w_t$ is used as a prior to window $w_{t+1}$, and the inference from 
-that is used for window $w_{t+2}$, and so on.
+from window $w_t$ is used as a prior to window $w_{t+1}$.
 Figure~\ref{fig:flowchart} illustrates the design of the iterative algorithm for dynamic query expansion.
 
 The initial pre-processing begins with the tweet input stream, which is filtered by a
 date range specified by the window size. 
-For each election, tweets from a month leading up to the election were used.
-After extensive analysis we determined that the optimal window size was three days;
+For each election, tweets from a month leading up to the election are used.
+After preliminary analysis we determined that the optimal window size was three days;
 smaller window sizes resulted in not enough data points for probabilistic inference, and
 larger window sizes lead to combinatorial explosion as PSL generates rules by
 substituting all possible groundings.
@@ -128,7 +127,7 @@ Below we outline the recursive PSL rules that grows the hashtag preferences and 
 	 \softand \textsc{Contains}(T,W)
 	\softand \textsc{Belongs}(W,G)\\
 	 \softand \textsc{Negative}(T)
-	\Rightarrow \sim \textsc{IsMember}(A,G)
+	\Rightarrow \softneg \textsc{IsMember}(A,G)
 \end{split}
 \end{align*}
 
@@ -148,38 +147,13 @@ Below we outline the recursive PSL rules that grows the hashtag preferences and 
 	\softand \textsc{Tweeted}(A,T)
 	\softand \textsc{Contains}(T,W)\\
 	\softand \textsc{Negative}(T)
-	\Rightarrow \sim \textsc{Belongs}(W,G)
+	\Rightarrow \softneg \textsc{Belongs}(W,G)
 \end{split}
 \end{align*}
 Here $\textsc{Positive}$ and $\textsc{Negative}$ are predicates whose truth values are calculated from the sentiment of the tweet such that the highly positive tweets get a truth value closer to $1.0$ for the predicate $\textsc{Positive}$ and highly negative tweets are assigned a truth value of $1.0$ for the predicate $\textsc{Negative}$. 
 Since PSL works under the closed world assumption, we do not need to specify the groundings that are false i.e., positive tweets are not assigned $0.0$ for the predicate $\textsc{Negative}$ and vice-versa.
 For tweets that do not have a positive or negative orientation we assign a truth value of $0.5$ for both the $\textsc{Positive}$ and $\textsc{Negative}$ predicates.
-\begin{figure*}
-	\centering
-	\subfloat[Day 0]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/caprilesWordCloud1.png}
-		\label{fig:wordCloud1}
-	} 
-	\subfloat[Day 6]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/caprilesWordCloud2.png}
-		\label{fig:wordCloud2}
-	} \\
-	\noindent 
-	\subfloat[Day 15]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/caprilesWordCloud3.png}
-		\label{fig:wordCloud3}
-	}
-	\subfloat[Day 30]
-	{
-		\includegraphics[width=0.5\textwidth, height=0.17\textheight]{support_files/caprilesWordCloud4.png}
-		\label{fig:wordCloud4}
-	}
-	\caption{Evolution of hashtags for Henrique Capriles} 
-	\label{fig:wordCloud}
-\end{figure*}
+
 
 We also defined rules that encode how ideologies propagate in a social media, specifically Twitter.
 For example, the first rule below states if one author retweets a tweet created by another author then it can be assumed that the former is endorsing the opinion of the latter and hence likely to have the same political affiliation. 
@@ -208,7 +182,7 @@ The rules below detail the propagation of affiliation based on social interactio
 	\softand \textsc{Tweeted}(A,T)
 	\softand \textsc{Mentions}(T,B)\\
 	\softand \textsc{Negative}(T)
-	\Rightarrow \sim \textsc{IsMember}(A,G)
+	\Rightarrow \softneg \textsc{IsMember}(A,G)
 \end{split}
 \end{align*}
 The last two rules defined below encode the assumption that when two hashtags co-occur and one is a name of a candidate then the other hashtag is bound to be about the candidate too.
@@ -232,7 +206,7 @@ This was a major contributing factor to the memory issues detailed in the optima
 	\softand \\
 	 \textsc{SeedWord}(W1,G)
 	\softand \textsc{Negative}(T)\\
-	\Rightarrow \sim \textsc{Belongs}(W2,G)
+	\Rightarrow \softneg \textsc{Belongs}(W2,G)
 \end{split}
 \end{align*}
 In addition to the rules, we also define constraints on the $\textsc{Belongs}$ and $\textsc{IsMember}$ predicates so that a particular hashtag or author can be associated to at most one candidate. 

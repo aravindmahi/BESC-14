@@ -9,7 +9,7 @@ the social, economic or political landscape of a country.
 
 Most approaches to tracking real-world phenomena over Twitter rely on first defining a vocabulary
 of keywords (or hashtags) to track over the social media. This is typically sufficient for
-phenomena about which we have a fairly stable understanding but not for rapidly evolving phenomena,
+phenomena about which we have a fairly stable understanding. But for rapidly evolving phenomena, this is insufficient,
 e.g., an election season where new developments can upset or raise the success rates of competing candidates
 among key groups or populations.
 In such cases, rather than %use 
@@ -25,23 +25,16 @@ qualitative and quantitative insight into the utility of our approach.
 Our key contributions are:
 \begin{enumerate}
 \item We demonstrate
-a novel unsupervised learning algorithm that builds dynamic vocabularies using Probabilistic Soft Logic (PSL) ~\cite{kimmig2012short}, a framework for probabilistic reasoning over relational domains.
-Beginning with a small seed set of keywords/hashtags, we demonstrate how our PSL program helps
-grow the seed set into 
-vocabularies involving hundreds of relevant terms. This aids in significantly improving the retrieval of tweets
-corresponding to relevant
+a novel unsupervised learning algorithm that builds dynamic vocabularies using probabilistic soft logic(PSL)~\cite{kimmig2012short}, a framework for probabilistic reasoning over relational domains. Beginning with a small seed set of keywords/hashtags, we demonstrate how our PSL program helps grow the seed set into  vocabularies involving hundreds of relevant terms. This aids in significantly improving the retrieval of tweets corresponding to relevant
 social groups of interest.
-\item Using ten presidential elections from eight countries of Latin America (Mexico, Venezuela, Ecuador, Paraguay, Chile, Panama, Colombia and Honduras), we show how our query expansion methodology helps capture dynamic trends and improve the election prediction performance. 
-\begin{comment}
-\item In addition to qualitative understanding of social groups, we demonstrate how our approach yields
-appreciable improvements to the forecasting of election outcomes. By regressing against opinion polls in each region,
-we illustrate how better social group modeling reveals popularities of candidates and their policies.
-\end{comment}
+\item In contrast to traditional co-occurrence based query expansion strategies, we develop an approach that harnesses the social structure implicit in group memberships as captured through retweets, and tweet sentiment.
+\item Using ten presidential elections from eight countries of Latin America (Mexico, Venezuela, Ecuador, Paraguay, Chile, Panama, Colombia and Honduras), we show how our query expansion methodology helps capture dynamic trends and improve election forecasting performance. 
+
 \end{enumerate}
 
 \section{Related Work}
 Related work can be organized into following key categories: query expansion, forecasting elections using social media,
-and probabilistic reasoning with PSL.
+and social group modeling.
 \begin{comment}
 \reviews{refer\\
 Dongsheng Duan, Yuhua Li, Ruixuan Li, Rui Zhang, and Aiming Wen. 2012. RankTopic: Ranking Based Topic Modeling. In Proceedings of the 2012 IEEE 12th International Conference on Data Mining (ICDM 12) [This work also captures relational information] ; Daniel Ramage, Susan T. Dumais, and Daniel J. Liebling. ICWSM, The AAAI Press, (2010); Castella, Quim and Sutton, Charles A Word Storms: Multiples of Word Clouds for Visual Comparison of Documents. CoRR abs/1301.0503 (2013)\\
@@ -50,13 +43,13 @@ Lau, Jey Han, Nigel Collier and Timothy Baldwin (2012) On-line Trend Analysis wi
 \end{comment}
 
 \subsection{Query Expansion}
-Query expansion is a classical technique in information retrieval (IR) ~\cite{manning2008introduction} intended to improve
+Query expansion is a classical technique in information retrieval (IR) ~\cite{manning2008introduction} for improving
 retrieval performance by overcoming problems such as {\it synonymy}. Query expansion algorithms
 are typically iterative in nature wherein a seed set of query terms help identify an initial set
 of documents matching the query, and the highly-ranked retrieved documents (either judged by a human
 or by `pseudo-relevance' techniques) are used to automatically grow the vocabulary. Modern
 query expansion algorithms use sophisticated concept modeling approaches ~\cite{metzler2007latent}
-to grow the given seed set. Kamran ~\cite{massoudi2011incorporating} considers not only the co-occurrence but also the time information to score the related terms to expand the query.  
+to grow the given seed set. Massoudi et al.~\cite{massoudi2011incorporating} consider not only the co-occurrence but also the time information to score the related terms to expand the query.  
 In contrast to such classical approaches,
 our proposed approach is based on a dynamic query expansion strategy  intended to track a vocabulary
 over time. Furthermore, unlike most approaches to query expansion, our PSL approach uses a probabilistic formalism
@@ -65,7 +58,7 @@ multiple indicators (social network, demographics, time) to grow the vocabulary 
 specific strategy.
 
 \subsection{Forecasting Elections using Social Media}
-Traditional approaches to forecasting elections use `volume-based' ideas
+Traditional approaches to forecasting elections use ``volume-based'' ideas
 ~\cite{tumasjan2010predicting,o2010tweets,saez2011total,bermingham2011using}, 
 i.e., forecasting election results by assessing the popularities of candidates and their policies.
 In particular, both ~\cite{o2010tweets,bermingham2011using} fit a regression model to opinion 
@@ -74,14 +67,14 @@ polls as the dependent variable.
 More sophisticated approaches, as presented in~\cite{livne2011party,conover2011predicting,diaz2012taking},
 either model the candidates or the voters in the elections rather than compute the aggregated sentiment of the mass.  
 In~\cite{conover2011predicting} the authors build a support vector machine (SVM)
-classifier trained on manually labeled tweets and classify users into `left' and `right' aligned.
+classifier trained on manually labeled tweets and classify users into ``left'' and ``right'' aligned.
 Using this information and how political information diffuses in a network, they demonstrate an accuracy of 95\%  in 
 predicting the political alignment of Twitter users.
 Livne et al. in ~\cite{livne2011party} analyze the Twitter profiles of candidates who contested 
 the 2010 mid-term elections in the U.S. 
 They identify topics specific to groups of candidates, split according to their known political orientations and use 
 these features obtained as inputs to a regression model to forecast the elections. 
-In a similar technique Diaz-Aviles in~\cite{diaz2012taking} model the candidates by building an emotional vector 
+In a similar technique Diaz-Aviles et al. in ~\cite{diaz2012taking} model the candidates by building an emotional vector 
 for each candidate using the mentions of that candidate and sentiments associated with each mention learned using 
 the NRC Emotion Lexicon (EmoLex). 
 They then use %such profiles learned 
@@ -129,5 +122,5 @@ models user affiliations within groups by capturing social networks comprising u
 messages to other users and the various groups they intend to model.
 Dynamics of group affiliations are captured through various interactions between these entities in the underlying
 network. The authors discover hashtag usage specific to political seasons.
-Our work here differs in that we model the dynamic growth of vocabularies.
+Our work here differs in that we model the dynamic growth of vocabularies as events unfold.
 
