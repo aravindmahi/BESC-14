@@ -1,3 +1,5 @@
+%!TEX root = ../election_besc14.tex
+
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.35]{support_files/flowChart2.PNG}
@@ -30,13 +32,13 @@ Given interpretation $\mathit{I}$, these relaxations for the logical conjunction
 \end{align*}  
 where we use the tilde modifier (\textasciitilde) to indicate the relaxation of the Boolean domain.
 Using the logical algebra and the relaxations above, 
-an implication rule $\mathit{r} \equiv \mathit{r_{body}} \rightarrow \mathit{r_{head}} $ is satisfied if and only if the truth value of its head is at least that of its body. The rule's \emph{distance to satisfaction} measures the degree to which this condition is violated.
-\begin{center} 
- $\mathit{d_r}(\mathit{I}) =$ max\{0,$\mathit{I(r_{body})} - \mathit{I(r_{head})}$\}
- \end{center}
-PSL induces a probability distribution over possible interpretations $\mathit{I}$ over the given set of ground atoms $\mathit{l} $ in the domain. 
-Let $\mathit{R}$ be the set of all ground rules that are instances of a rule from the PSL program.  
-The probability density function $\mathit{f}$ over $\mathit{I}$ is defined as
+an implication rule $r \equiv r_{\mathit{body}} \rightarrow r_{\mathit{head}} $ is satisfied if and only if the truth value of its head is at least that of its body. The rule's \emph{distance to satisfaction} measures the degree to which this condition is violated.
+\begin{align*} 
+d_r(I) &= \max\{0, ~ I(r_{\mathit{body}}) - I(r_{\mathit{head}})\}
+ \end{align*}
+PSL induces a probability distribution over possible interpretations $I$ over the given set of ground atoms $l$ in the domain. 
+Let $R$ be the set of all ground rules that are instances of a rule from the PSL program.  
+The probability density function $f$ over $I$ is defined as
 \begin{equation}
 \label{eq:contimn1}
     f (I) = \frac{1}{Z} \text{exp}[-\sum_{r\in R} \lambda_r (d_r(I))^p]

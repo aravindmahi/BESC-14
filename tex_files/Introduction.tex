@@ -1,31 +1,33 @@
+%!TEX root = ../election_besc14.tex
+
 \section{Introduction}
 It is now established that social media such as Twitter serves as a weak
 predictor or as a correlative surrogate for many real-world trends such
 as %book sales~\cite{gruhl2005predictive}, 
 box office earnings~\cite{asur2010predicting}, flu case counts~\cite{culotta2010towards}, and even stock 
-prices~\cite{bollen2011twitter}. A topic of current interest is to study how
+prices~\cite{bollen2011twitter}. A topic of current interest is the study of how
 online chatter can be used to model
 the social, economic or political landscape of a country.
 
-Most approaches to tracking real-world phenomena over Twitter rely on first defining a vocabulary
-of keywords (or hashtags) to track over the social media. This is typically sufficient for
-phenomena about which we have a fairly stable understanding. But for rapidly evolving phenomena, this is insufficient,
-e.g., an election season where new developments can upset or raise the success rates of competing candidates
+Most approaches for tracking real-world phenomena over Twitter rely on first defining a vocabulary
+of keywords (or hashtags) to track over the social media. This approach is typically sufficient for
+phenomena about which we have a fairly stable understanding. But for rapidly evolving phenomena, this approach alone is insufficient,
+e.g., an election season where new developments can disrupt or bolster the preferences for competing candidates
 among key groups or populations.
 In such cases, rather than %use 
-a static vocabulary to {\it a priori} define social groups
+using a static vocabulary to {\it a priori} define social groups
 of interest (e.g., Twitter users who are favorably or not favorably disposed
 toward specific candidates), it is preferable to grow dynamic vocabularies by modeling the temporal progression of
 events. In addition to better defining social group memberships, such modeling can provide
 higher-quality data for downstream applications such as forecasting.
 
 We propose a dynamic query expansion strategy that aids in modeling social groups of interest over time, and
-use the domain of elections to demonstrate the effectiveness of our approach. Modeling elections provides both
+we use the domain of elections to demonstrate the effectiveness of our approach. Modeling elections provides both
 qualitative and quantitative insight into the utility of our approach.
-Our key contributions are:
+Our key contributions are as follows:
 \begin{enumerate}
 \item We demonstrate
-a novel unsupervised learning algorithm that builds dynamic vocabularies using probabilistic soft logic(PSL)~\cite{kimmig2012short}, a framework for probabilistic reasoning over relational domains. Beginning with a small seed set of keywords/hashtags, we demonstrate how our PSL program helps grow the seed set into  vocabularies involving hundreds of relevant terms. This aids in significantly improving the retrieval of tweets corresponding to relevant
+a novel unsupervised learning algorithm that builds dynamic vocabularies using probabilistic soft logic (PSL)~\cite{kimmig2012short}, a framework for probabilistic reasoning over relational domains. Beginning with a small seed set of keywords/hashtags, we demonstrate how our PSL program helps grow the seed set into  vocabularies involving hundreds of relevant terms. This aids in significantly improving the retrieval of tweets corresponding to relevant
 social groups of interest.
 \item In contrast to traditional co-occurrence based query expansion strategies, we develop an approach that harnesses the social structure implicit in group memberships as captured through retweets, and tweet sentiment.
 \item Using ten presidential elections from eight countries of Latin America (Mexico, Venezuela, Ecuador, Paraguay, Chile, Panama, Colombia and Honduras), we show how our query expansion methodology helps capture dynamic trends and improve election forecasting performance. 
@@ -61,25 +63,25 @@ specific strategy.
 Traditional approaches to forecasting elections use ``volume-based'' ideas
 ~\cite{tumasjan2010predicting,o2010tweets,saez2011total,bermingham2011using}, 
 i.e., forecasting election results by assessing the popularities of candidates and their policies.
-In particular, both ~\cite{o2010tweets,bermingham2011using} fit a regression model to opinion 
+Some approaches fit a regression model to opinion 
 polls with volume of mentions and sentiment as independent variables and the opinion 
-polls as the dependent variable. 
-More sophisticated approaches, as presented in~\cite{livne2011party,conover2011predicting,diaz2012taking},
+polls as the dependent variable~\cite{o2010tweets,bermingham2011using}. 
+More sophisticated approaches ~\cite{livne2011party,conover2011predicting,diaz2012taking}
 either model the candidates or the voters in the elections rather than compute the aggregated sentiment of the mass.  
-In~\cite{conover2011predicting} the authors build a support vector machine (SVM)
+Conover et al.~\cite{conover2011predicting} build a support vector machine (SVM)
 classifier trained on manually labeled tweets and classify users into ``left'' and ``right'' aligned.
 Using this information and how political information diffuses in a network, they demonstrate an accuracy of 95\%  in 
 predicting the political alignment of Twitter users.
-Livne et al. in ~\cite{livne2011party} analyze the Twitter profiles of candidates who contested 
+Livne et al.~\cite{livne2011party} analyze the Twitter profiles of candidates who contested 
 the 2010 mid-term elections in the U.S. 
 They identify topics specific to groups of candidates, split according to their known political orientations and use 
 these features obtained as inputs to a regression model to forecast the elections. 
-In a similar technique Diaz-Aviles et al. in ~\cite{diaz2012taking} model the candidates by building an emotional vector 
+In a similar technique, Diaz-Aviles et al.~\cite{diaz2012taking} model the candidates by building an emotional vector 
 for each candidate using the mentions of that candidate and sentiments associated with each mention learned using 
 the NRC Emotion Lexicon (EmoLex). 
 They then use %such profiles learned 
 these profiles to predict the rise and fall of a candidate's popularity.
-In another thread of research, Mustafaraj et al. ~\cite{mustafaraj2011vocal} model the distribution of political content 
+In another thread of research, Mustafaraj et al.~\cite{mustafaraj2011vocal} model the distribution of political content 
 among Twitter users. 
 They divide the users into two groups, the ``vocal minority" and the ``silent majority" and
 observe that these two groups engage in different ways over social media.
@@ -117,8 +119,8 @@ we do not make any claims of developing a universal forecasting system for elect
 \subsection{Social Group Modeling}
 Twitter is a natural venue to study social group modeling and there have been many studies that aim to
 study social groups in the context of election seasons.
-~\cite{huang2012social}, for instance,
-models user affiliations within groups by capturing social networks comprising users, their posts,
+Huang et al.~\cite{huang2012social}, for instance,
+model user affiliations within groups by capturing social networks comprising users, their posts,
 messages to other users and the various groups they intend to model.
 Dynamics of group affiliations are captured through various interactions between these entities in the underlying
 network. The authors discover hashtag usage specific to political seasons.
