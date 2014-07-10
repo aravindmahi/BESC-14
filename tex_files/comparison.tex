@@ -1,3 +1,5 @@
+%!TEX root = ../election_besc14.tex
+
 \subsection{Election Prediction}
 \begin{comment}
 
@@ -81,8 +83,7 @@ learn a mapping
 from tweet features (more below) to opinion polls, and thus forecast elections. 
 this approach is adapted from \cite{bermingham2011using} and \cite{o2010tweets}.
 
-We reason that by regressing from Twitter-derived features to the opinion polls the bias due to Twitter being a non-representative sample
-can be mitigated.
+We reason that by regressing from Twitter-derived features to the opinion polls mitigates bias caused by Twitter being a non-representative sample.
 We use a total of six features: Klout scores, number of unique users, total number of mentions, sentiment, and incumbency.
 The Klout scores, unique users, and mentions are further categorized into positive and negative mentions.
 Using our expanded vocabularies to suitably apportion tweets across the candidates,
