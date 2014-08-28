@@ -84,10 +84,10 @@ from tweet features (more below) to opinion polls, and thus forecast elections.
 this approach is adapted from \cite{bermingham2011using} and \cite{o2010tweets}.
 
 We reason that by regressing from Twitter-derived features to the opinion polls mitigates bias caused by Twitter being a non-representative sample.
-We use a total of six features: Klout scores, number of unique users, total number of mentions, sentiment, and incumbency. The Klout score measures an author's influence to dirve action on a scale from 1 to 100. The sentiment is scored from -20 to 20 to rate the positive or negative assertion associated with the tweet. The incumbency is a binary variable to indicate whether the candidate is the existing holder of the political office. Moreover, the Klout scores, unique users, and mentions are further categorized into positive and negative mentions.
+We use a total of six features: Klout scores, number of unique users, total number of mentions, sentiment, and incumbency. The Klout score measures an author’s influence to drive action on a scale from 1 to 100. Sentiment is scored from -20 to 20 to rate positive or negative tone associated with the tweet. Incumbency is a binary variable indicating whether the candidate is the existing holder of the political office. Moreover, the Klout scores, unique users, and mentions are further categorized into positive and negative mentions.
 Using our expanded vocabularies to suitably apportion tweets across the candidates,
 we normalize each of these features to obtain the relative share of the volume. 
-When there is more than one polling house publishing an opinion poll (for the same date) we take the average of the polls. 
+When there is more than one polling house publishing an opinion poll (for the same date), we take the average of the polls. 
 
 \noindent
 {\bf Performance:}
