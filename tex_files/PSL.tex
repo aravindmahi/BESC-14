@@ -103,7 +103,7 @@ In order to capture the temporal connectivity between the iterations, in additio
 \end{align*}
 we define additional rules such as
 \begin{align*}
-\textsc{WasMember}(A,G) \Rightarrow \textsc{IsMember}(A,G)
+\textsc{WasMember}(U,G) \Rightarrow \textsc{IsMember}(U,G)
 \end{align*}
 \begin{align*}
 \textsc{Belonged}(W,G) \Rightarrow \textsc{Belongs}(W,G)
@@ -115,28 +115,28 @@ The same reasoning applies to the user-candidate affiliations (memberships).
 Below we outline the recursive PSL rules that grows the hashtag preferences and the user affiliations. 
 \begin{align*}
 \begin{split}
-\textsc{Tweeted}(A,T) 
+\textsc{Tweeted}(U,T) 
 	\softand \textsc{Contains}(T,W)
 	\softand \textsc{Belongs}(W,G) \\ 
 	\softand \textsc{Positive}(T)
-	\Rightarrow \textsc{IsMember}(A,G)
+	\Rightarrow \textsc{IsMember}(U,G)
 \end{split}
 \end{align*}
 
 \begin{align*}
 \begin{split}
-\textsc{Tweeted}(A,T)
+\textsc{Tweeted}(U,T)
 	 \softand \textsc{Contains}(T,W)
 	\softand \textsc{Belongs}(W,G)\\
 	 \softand \textsc{Negative}(T)
-	\Rightarrow \softneg \textsc{IsMember}(A,G)
+	\Rightarrow \softneg \textsc{IsMember}(U,G)
 \end{split}
 \end{align*}
 
 \begin{align*}
 \begin{split}
-\textsc{IsMember}(A,G)
-	 \softand \textsc{Tweeted}(A,T)
+\textsc{IsMember}(U,G)
+	 \softand \textsc{Tweeted}(U,T)
 	\softand \textsc{Contains}(T,W)\\
 	 \softand \textsc{Positive}(T) 
 	\Rightarrow \textsc{Belongs}(W,G)
@@ -145,8 +145,8 @@ Below we outline the recursive PSL rules that grows the hashtag preferences and 
 
 \begin{align*}
 \begin{split}
-\textsc{IsMember}(A,G) 
-	\softand \textsc{Tweeted}(A,T)
+\textsc{IsMember}(U,G) 
+	\softand \textsc{Tweeted}(U,T)
 	\softand \textsc{Contains}(T,W)\\
 	\softand \textsc{Negative}(T)
 	\Rightarrow \softneg \textsc{Belongs}(W,G)
@@ -163,28 +163,28 @@ Similarly a person mentioning another person in a positive connotation is assume
 The rules below detail the propagation of affiliation based on social interactions.
 \begin{align*}
 \begin{split}
-\textsc{IsMember}(B,G) 
-	\softand \textsc{Tweeted}(A,T)
-	\softand \textsc{ReTweet}(T,B)\\
-	\Rightarrow \textsc{IsMember}(A,G)
+\textsc{IsMember}(U1,G) 
+	\softand \textsc{Tweeted}(U2,T)
+	\softand \textsc{ReTweet}(T,U1)\\
+	\Rightarrow \textsc{IsMember}(U2,G)
 \end{split}
 \end{align*}
 \begin{align*}
 \begin{split}
-\textsc{IsMember}(B,G) 
-	\softand \textsc{Tweeted}(A,T)
-	\softand \textsc{Mentions}(T,B)\\
+\textsc{IsMember}(U1,G) 
+	\softand \textsc{Tweeted}(U2,T)
+	\softand \textsc{Mentions}(T,U1)\\
 	\softand \textsc{Positive}(T)
-	\Rightarrow \textsc{IsMember}(A,G)
+	\Rightarrow \textsc{IsMember}(U2,G)
 \end{split}
 \end{align*}
 \begin{align*}
 \begin{split}
-\textsc{IsMember}(B,G) 
-	\softand \textsc{Tweeted}(A,T)
-	\softand \textsc{Mentions}(T,B)\\
+\textsc{IsMember}(U1,G) 
+	\softand \textsc{Tweeted}(U2,T)
+	\softand \textsc{Mentions}(T,U1)\\
 	\softand \textsc{Negative}(T)
-	\Rightarrow \softneg \textsc{IsMember}(A,G)
+	\Rightarrow \softneg \textsc{IsMember}(U2,G)
 \end{split}
 \end{align*}
 The last two rules defined below encode the assumption that, when two hashtags co-occur and one is a name of a candidate, then the other hashtag is likely about the candidate too.
