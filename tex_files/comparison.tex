@@ -83,8 +83,8 @@ learn a mapping
 from tweet features (more below) to opinion polls, and thus forecast elections. 
 this approach is adapted from \cite{bermingham2011using} and \cite{o2010tweets}.
 
-We reason that by regressing from Twitter-derived features to the opinion polls mitigates bias caused by Twitter being a non-representative sample.
-We use a total of six features: Klout scores, number of unique users, total number of mentions, sentiment, and incumbency. The Klout score measures an author’s influence to drive action on a scale from 1 to 100. Sentiment is scored from -20 to 20 to rate positive or negative tone associated with the tweet. Incumbency is a binary variable indicating whether the candidate is the existing holder of the political office. Moreover, the Klout scores, unique users, and mentions are further categorized into positive and negative mentions.
+We reason that regressing from Twitter-derived features to the opinion polls mitigates bias caused by Twitter being a non-representative sample.
+We use a total of six features: Klout scores, number of unique users, total number of mentions, sentiment, and incumbency. The Klout score measures an author’s influence to drive action on a scale from 1 to 100. Sentiment is scored from -20 to 20 to rate positive or negative tone associated with the tweet. Incumbency is a binary variable indicating whether the candidate is the existing holder of the political office. Moreover, the Klout scores, unique users, and mentions are further categorized into positive and negative mentions based on sentiment score.
 Using our expanded vocabularies to suitably apportion tweets across the candidates,
 we normalize each of these features to obtain the relative share of the volume. 
 When there is more than one polling house publishing an opinion poll (for the same date), we take the average of the polls. 
@@ -99,4 +99,4 @@ Table~\ref{table:trackRecord} shows the overall performance of the regression mo
 gathered by each candidate. The error rate is calculated as the difference between the predicted
 percentage and the actual polled percentage.
 In all cases except the Colombia election, the PSL methodology described here gave a better
-estimate of the vote share, in many cases within a margin of 5\%.
+estimate of the vote share, in many cases within a error margin of 5\%.

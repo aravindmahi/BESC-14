@@ -3,7 +3,7 @@
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.35]{support_files/flowChart2.PNG}
-	%\includegraphics[height=0.25\textheight, width=0.80\textwidth]{support_files/flowChart.png}
+	%\includegraphics[height=0.25, width=0.80]{support_files/flowChart2.png}
 	\caption{Design of the query expansion pipeline.}
 	\label{fig:flowchart}
 \end{figure}
@@ -158,7 +158,8 @@ For tweets that do not have a positive or negative orientation we assign a truth
 
 
 We also defined rules that encode how ideologies propagate in a social media, specifically Twitter.
-For example, the first rule below states if one author retweets a tweet created by another author then it can be assumed that the former is endorsing the opinion of the latter and hence likely to have the same political affiliation. 
+For example, the first rule below states if an author retweets a tweet,  it can be assumed that the he/she is endorsing the opinion of the author of the original tweet and hence likely to have the same political affiliation. 
+ 
 Similarly a person mentioning another person in a positive connotation is assumed to share similar views.
 The rules below detail the propagation of affiliation based on social interactions.
 \begin{align*}
